@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ChevronDown, Search, FileText, Zap, BarChart3, Lock, Cloud, MessageSquare, BookOpen, Sparkles, ArrowRight, Menu, X, Moon, Sun, Star, TrendingUp, Users, CheckCircle } from 'lucide-react';
+import { ChevronDown, Search, FileText, Zap, BarChart3, Lock, Cloud, MessageSquare, BookOpen, Sparkles, ArrowRight, Menu, X, Moon, Sun, Star, TrendingUp, Users, CheckCircle, Globe} from 'lucide-react';
 
 const PDFVerseLanding = () => {
   const [isDark, setIsDark] = useState(false);
