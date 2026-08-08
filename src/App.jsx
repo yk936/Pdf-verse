@@ -475,6 +475,271 @@ const PDFVerseLanding = () => {
               {/* Dashboard Tabs */}
               <div className="flex gap-4 mb-8 border-b border-slate-200 dark:border-slate-700">
                 {['Overview', 'PDFs', 'Analytics', 'Settings'].map((tab) => (
-                  <button
-                    key={tab}
+  <button
+    key={tab}
+    onClick={() => setActiveTab(tab.toLowerCase())}
+    className={`pb-4 px-2 font-medium text-sm transition-colors ${
+      activeTab === tab.toLowerCase()
+        ? 'text-blue-600 border-b-2 border-blue-600'
+        : isDark
+        ? 'text-slate-400 hover:text-slate-200'
+        : 'text-slate-600 hover:text-slate-900'
+    }`}
+  >
+    {tab}
+  </button>
+))}
+</div>
+
+{/* Dashboard Content */}
+<div className="grid md:grid-cols-3 gap-6">
+  <div className={`p-6 rounded-xl border ${
+    isDark
+      ? 'bg-slate-800/50 border-slate-700'
+      : 'bg-white border-slate-200'
+  }`}>
+    <div className="flex items-center justify-between mb-4">
+      <div>
+        <p className={`text-sm ${
+          isDark ? 'text-slate-400' : 'text-slate-600'
+        }`}>
+          Total PDFs
+        </p>
+        <p className="text-3xl font-bold mt-1">248</p>
+      </div>
+
+      <div className="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center">
+        <FileText className="w-6 h-6 text-blue-600" />
+      </div>
+    </div>
+
+    <div className="flex items-center gap-2 text-sm text-green-600">
+      <TrendingUp className="w-4 h-4" />
+      <span>12% this month</span>
+    </div>
+  </div>
+
+  <div className={`p-6 rounded-xl border ${
+    isDark
+      ? 'bg-slate-800/50 border-slate-700'
+      : 'bg-white border-slate-200'
+  }`}>
+    <div className="flex items-center justify-between mb-4">
+      <div>
+        <p className={`text-sm ${
+          isDark ? 'text-slate-400' : 'text-slate-600'
+        }`}>
+          AI Queries
+        </p>
+        <p className="text-3xl font-bold mt-1">1,284</p>
+      </div>
+
+      <div className="w-12 h-12 rounded-xl bg-purple-100 flex items-center justify-center">
+        <Sparkles className="w-6 h-6 text-purple-600" />
+      </div>
+    </div>
+
+    <div className="flex items-center gap-2 text-sm text-green-600">
+      <TrendingUp className="w-4 h-4" />
+      <span>24% this month</span>
+    </div>
+  </div>
+
+  <div className={`p-6 rounded-xl border ${
+    isDark
+      ? 'bg-slate-800/50 border-slate-700'
+      : 'bg-white border-slate-200'
+  }`}>
+    <div className="flex items-center justify-between mb-4">
+      <div>
+        <p className={`text-sm ${
+          isDark ? 'text-slate-400' : 'text-slate-600'
+        }`}>
+          Storage Used
+        </p>
+        <p className="text-3xl font-bold mt-1">68%</p>
+      </div>
+
+      <div className="w-12 h-12 rounded-xl bg-green-100 flex items-center justify-center">
+        <Cloud className="w-6 h-6 text-green-600" />
+      </div>
+    </div>
+
+    <div className="w-full h-2 bg-slate-200 rounded-full overflow-hidden">
+      <div className="h-full w-[68%] bg-gradient-to-r from-blue-600 to-blue-400 rounded-full" />
+    </div>
+  </div>
+</div>
+
+{/* Recent Documents */}
+<div className="mt-8">
+  <div className="flex items-center justify-between mb-6">
+    <h3 className="text-xl font-bold">Recent Documents</h3>
+
+    <button className="text-blue-600 font-medium text-sm hover:text-blue-700">
+      View all
+    </button>
+  </div>
+
+  <div className="space-y-3">
+    {pdfSamples.slice(0, 3).map((pdf, idx) => (
+      <div
+        key={idx}
+        className={`flex items-center gap-4 p-4 rounded-xl border transition-all hover:scale-[1.01] ${
+          isDark
+            ? 'bg-slate-800/40 border-slate-700 hover:bg-slate-800'
+            : 'bg-white border-slate-200 hover:shadow-md'
+        }`}
+      >
+        <div
+          className="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0"
+          style={{ background: pdf.image }}
+        >
+          <FileText className="w-6 h-6 text-white" />
+        </div>
+
+        <div className="flex-1 min-w-0">
+          <h4 className="font-semibold truncate">
+            {pdf.title}
+          </h4>
+
+          <p className={`text-sm ${
+            isDark ? 'text-slate-400' : 'text-slate-500'
+          }`}>
+            {pdf.category} • {pdf.pages} pages
+          </p>
+        </div>
+
+        <div className="hidden sm:flex items-center gap-2 text-sm">
+          <Star className="w-4 h-4 text-yellow-400 fill-current" />
+          {pdf.rating}
+        </div>
+
+        <button className="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">
+          <ChevronDown className="w-5 h-5 rotate-[-90deg]" />
+        </button>
+      </div>
+    ))}
+  </div>
+</div>
+</div>
+</div>
+</section>
+
+{/* CTA Section */}
+<section className="py-24 relative overflow-hidden">
+  <div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-blue-500 to-blue-700" />
+
+  <div className="absolute inset-0 opacity-20">
+    <FloatingOrb delay={1} size="300px" opacity={0.5} />
+    <FloatingOrb delay={3} size="250px" opacity={0.4} />
+  </div>
+
+  <div className="relative z-10 max-w-4xl mx-auto px-6 text-center text-white">
+    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur mb-6">
+      <Zap className="w-4 h-4" />
+      <span className="text-sm font-medium">
+        Start your document journey today
+      </span>
+    </div>
+
+    <h2 className="text-4xl md:text-6xl font-bold mb-6">
+      Your PDFs. Smarter.
+    </h2>
+
+    <p className="text-lg md:text-xl text-blue-100 max-w-2xl mx-auto mb-10">
+      Search, understand, summarize and chat with your documents
+      using the power of AI.
+    </p>
+
+    <div className="flex flex-col sm:flex-row justify-center gap-4">
+      <button className="px-8 py-4 bg-white text-blue-600 font-semibold rounded-xl hover:scale-105 hover:shadow-2xl transition-all">
+        Get Started Free
+      </button>
+
+      <button className="px-8 py-4 border-2 border-white/40 text-white font-semibold rounded-xl hover:bg-white/10 transition-all">
+        Explore PDFs
+      </button>
+    </div>
+  </div>
+</section>
+
+{/* Footer */}
+<footer className={`py-12 border-t ${
+  isDark
+    ? 'bg-slate-950 border-slate-800'
+    : 'bg-slate-50 border-slate-200'
+}`}>
+  <div className="max-w-6xl mx-auto px-6">
+    <div className="grid md:grid-cols-4 gap-10">
+
+      <div className="md:col-span-2">
+        <div className="flex items-center gap-2 mb-4">
+          <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-700 rounded-lg flex items-center justify-center">
+            <FileText className="w-5 h-5 text-white" />
+          </div>
+
+          <span className="text-xl font-bold bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
+            PDFVerse
+          </span>
+        </div>
+
+        <p className={`max-w-md ${
+          isDark ? 'text-slate-400' : 'text-slate-600'
+        }`}>
+          The intelligent way to search, understand and interact
+          with your PDF documents.
+        </p>
+      </div>
+
+      <div>
+        <h4 className="font-bold mb-4">Product</h4>
+
+        <div className={`space-y-3 text-sm ${
+          isDark ? 'text-slate-400' : 'text-slate-600'
+        }`}>
+          <a href="#" className="block hover:text-blue-600">Features</a>
+          <a href="#" className="block hover:text-blue-600">Pricing</a>
+          <a href="#" className="block hover:text-blue-600">Security</a>
+          <a href="#" className="block hover:text-blue-600">API</a>
+        </div>
+      </div>
+
+      <div>
+        <h4 className="font-bold mb-4">Company</h4>
+
+        <div className={`space-y-3 text-sm ${
+          isDark ? 'text-slate-400' : 'text-slate-600'
+        }`}>
+          <a href="#" className="block hover:text-blue-600">About</a>
+          <a href="#" className="block hover:text-blue-600">Blog</a>
+          <a href="#" className="block hover:text-blue-600">Contact</a>
+          <a href="#" className="block hover:text-blue-600">Privacy</a>
+        </div>
+      </div>
+
+    </div>
+
+    <div className={`mt-12 pt-8 border-t text-sm flex flex-col sm:flex-row justify-between gap-4 ${
+      isDark
+        ? 'border-slate-800 text-slate-500'
+        : 'border-slate-200 text-slate-500'
+    }`}>
+      <span>
+        © 2026 PDFVerse. All rights reserved.
+      </span>
+
+      <div className="flex gap-6">
+        <a href="#" className="hover:text-blue-600">Terms</a>
+        <a href="#" className="hover:text-blue-600">Privacy</a>
+        <a href="#" className="hover:text-blue-600">Cookies</a>
+      </div>
+    </div>
+  </div>
+</footer>
+</div>
+  );
+};
+
+export default PDFVerseLanding;
           
