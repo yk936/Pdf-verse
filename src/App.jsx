@@ -22,6 +22,7 @@ import {
   ChevronDown,
 } from 'lucide-react';
 
+import { pdfData } from './data/pdfData';
 const PDFVerseLanding = () => {
   const [isDark, setIsDark] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
