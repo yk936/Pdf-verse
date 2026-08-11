@@ -2,11 +2,221 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PDFVerse</title>
+
+    <!-- Mobile / Responsive -->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+
+    <!-- Primary SEO -->
+    <title>PDFVerse — Discover, Read & Explore PDFs</title>
+
+    <meta
+      name="description"
+      content="PDFVerse is a modern platform to discover, search, read and explore PDFs in multiple languages — powered by a beautiful, intelligent reading experience."
+    />
+
+    <meta
+      name="keywords"
+      content="PDFVerse, PDF search, PDF reader, free PDFs, ebooks, documents, study material, research papers, multilingual PDFs"
+    />
+
+    <meta name="author" content="PDFVerse" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Theme -->
+    <meta name="theme-color" content="#070711" />
+    <meta name="color-scheme" content="dark light" />
+
+    <!-- Prevent phone number auto-linking -->
+    <meta name="format-detection" content="telephone=no" />
+
+    <!-- Canonical -->
+    <link rel="canonical" href="/" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Apple / PWA -->
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="PDFVerse — Discover, Read & Explore PDFs" />
+    <meta
+      property="og:description"
+      content="Discover and explore PDFs with a modern, intelligent reading experience."
+    />
+    <meta property="og:url" content="/" />
+    <meta property="og:site_name" content="PDFVerse" />
+    <meta property="og:image" content="/og-image.png" />
+    <meta property="og:image:alt" content="PDFVerse — Modern PDF discovery platform" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="PDFVerse — Discover, Read & Explore PDFs" />
+    <meta
+      name="twitter:description"
+      content="Discover and explore PDFs with a modern, intelligent reading experience."
+    />
+    <meta name="twitter:image" content="/og-image.png" />
+
+    <!-- Preconnect for faster font loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Premium SaaS typography -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!--
+      PDFVerse visual direction:
+
+      - Deep dark SaaS background
+      - Glassmorphism cards
+      - Soft gradients
+      - Floating 3D elements
+      - Smooth reveal animations
+      - Interactive search experience
+      - Premium typography
+      - Mobile-first responsive design
+
+      The actual 3D scene and SaaS animations will be implemented
+      in the React components/CSS files rather than here.
+    -->
+
+    <style>
+      html {
+        background: #070711;
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        min-width: 320px;
+        background: #070711;
+      }
+
+      #root {
+        min-height: 100vh;
+      }
+
+      /* Prevent a white flash before React loads */
+      #app-loader {
+        position: fixed;
+        inset: 0;
+        z-index: 99999;
+        display: grid;
+        place-items: center;
+        background:
+          radial-gradient(
+            circle at 50% 35%,
+            rgba(99, 102, 241, 0.14),
+            transparent 35%
+          ),
+          #070711;
+        transition:
+          opacity 0.35s ease,
+          visibility 0.35s ease;
+      }
+
+      .loader-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 14px;
+      }
+
+      .loader-orb {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        background:
+          radial-gradient(
+            circle at 30% 25%,
+            #ffffff,
+            #a5b4fc 20%,
+            #6366f1 48%,
+            #312e81 72%,
+            transparent 73%
+          );
+        box-shadow:
+          0 0 25px rgba(99, 102, 241, 0.45),
+          0 0 70px rgba(139, 92, 246, 0.2);
+        animation: pdfverse-orbit 1.6s ease-in-out infinite;
+      }
+
+      .loader-text {
+        color: rgba(255, 255, 255, 0.72);
+        font-family:
+          "Inter",
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+        font-size: 13px;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+      }
+
+      @keyframes pdfverse-orbit {
+        0%,
+        100% {
+          transform: translateY(0) scale(0.92);
+        }
+
+        50% {
+          transform: translateY(-7px) scale(1);
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+
+        .loader-orb {
+          animation: none;
+        }
+      }
+    </style>
   </head>
+
   <body>
+    <!-- Initial loading experience -->
+    <div id="app-loader" aria-hidden="true">
+      <div class="loader-content">
+        <div class="loader-orb"></div>
+        <div class="loader-text">PDFVERSE</div>
+      </div>
+    </div>
+
+    <!-- React application -->
     <div id="root"></div>
+
+    <!-- Vite entry point -->
     <script type="module" src="/src/main.jsx"></script>
+
+    <!-- Remove initial loader after React has loaded -->
+    <script>
+      window.addEventListener("load", () => {
+        const loader = document.getElementById("app-loader");
+
+        if (!loader) return;
+
+        requestAnimationFrame(() => {
+          loader.style.opacity = "0";
+          loader.style.visibility = "hidden";
+
+          setTimeout(() => {
+            loader.remove();
+          }, 400);
+        });
+      });
+    </script>
   </body>
 </html>
